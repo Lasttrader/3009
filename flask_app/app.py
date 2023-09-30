@@ -84,6 +84,15 @@ def api_message():
 
     return jsonify(str(prediction)) #возвращаем результат в сервсис, который запросил прогноз
 
+@app.route('/flskapi/v2/add_message/', methods = ['GET', 'POST']) #API
+def api_message():
+    x =  request.json #получаем json на входе из других сервисов
+    print(x['X_get_age'])
+    #нужнео сделать scaler и labelencoder, т.к. сторонний сервис не знает про масштабирование и кодирование даннеых дя модели
+    prediction = RFR2.predict([x['X_get_age']])#прогноз
+
+    return jsonify(str(prediction)) #возвращаем результат в сервсис, который запросил прогноз
+
 
 if __name__ == '__main__':
     app.run(debug=True)
