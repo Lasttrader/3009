@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 
+<style>
+    form {
+        margin: auto;
+        width: 35%;
+    }
+</style>
+
 <head>
     <title>Определение возраста клиента банка</title>
 </head>
 
-<form action="{{}}" method="POST">
+<form action="{{url_for('main')}}" method="POST">
     <fieldset>
         <small> Введите contact</small>
         <input type="text" name=contact>
@@ -61,6 +68,16 @@
         <input type="text" name=previous>
         <br>
         <br>
+
+        <button type="submit"> Получить прогноз </button>
     </fieldset>
 
+    <div>
+        {% if result %}
+        <p style="font-size:50px">Прогнозный возраст клиента банка</p>
+
+        <p style="font-size:50px">{{result}}</p>
+
+        {% endif %}
+    </div>
 </form>
