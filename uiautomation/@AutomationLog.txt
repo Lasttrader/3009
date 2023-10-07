@@ -1,0 +1,1 @@
+2023-10-07 11:51:39.085 auto_paint_test.py[19] <module> -> Find Control Timeout(10s): {AutomationId: 'TitileBar', ControlType: WindowControl}
