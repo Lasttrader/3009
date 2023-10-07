@@ -18,23 +18,23 @@ def get_squared(window, square):
     pass
 
 
-paintWindow = auto.WindowControl(searchDepth=1, ClassName='MSPaintApp')
-
-#определяем клики по ID элемента 
-paintWindow.SetActive()
-paintWindow.ButtonControl(AutomationId='TogglePaneButton').Click()
-
 square =''
 
-if paintWindow.Exists(1):
+#определяем окно paint
+paintwindow = auto.WindowControl(searchDepth=1, ClassName='MSPaintApp')
+if paintwindow.Exists(1):
     print('найдено окно paint')
+auto.ButtonControl(searchFromControl=paintwindow, Name="Pencil").Click()
+
+#определяем родительский элеиент
+shapes = auto.GroupControl(searchFromControl=paintwindow, Name="Shapes")
+#кликаем по дочернему элементу - квадрат
+auto.ListItemControl(searchFromControl=shapes, Name="Rectangle").Click()
+#рисуем квадрат
+auto.PaneControl(searchFromControl=paintwindow, 
+                 Name = "Using Rectangle tool on Canvas").DragDrop(100, 100, 200, 200)
+print('rectangle success')
 
 
-# if __name__ == '__main__':
-#     osVersion = os.sys.getwindowsversion().major
-#     if osVersion >= 10: CalcOnWindows10()
 
-#     auto.Logger.Write('\nPress any key to exit', auto.ConsoleColor.Cyan)
-#     import msvcrt
-#     while not msvcrt.kbhit():
-#         time.sleep(0.05)
+
